@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+  #header {
+    width: 100%;
+    background: #E0251B;
+    padding: 7px;
+  }
+  #ht {
+    color: white;
+    font-family: Verdana;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  p {
+    font-family: Verdana;
+    font-size: 12px;
+  }
+  .hideme {
+    display: none;
+  }
+  .showme {
+    display: visible;
+    font-family: Verdana;
+    font-size: 12px;
+  }
+</style>
+<title>Error when processing your request</title>
+</head>
+<body>
+<span id="onloadscript">
+<!--
+  var msg_text=document.getElementById("msg");
+  var e=document.getElementById("errormessage");
+  if (e.innerHTML.indexOf("timeout") > -1) {
+    msg_text.innerHTML = "Your user session has timed-out. Any changes since you last saved may have been lost.<br/>Please click on the button below to reload the application.";
+  }
+  else {
+    msg_text.innerHTML = "An application error has occurred. Any changes since you last saved may have been lost.<br/>Please contact the I.M. service desk.";
+  }
+-->
+</span>
+<img src="/sap/public/bc/ur/nw5/1x1.gif"
+       onload="
+         var onloadscript = document.getElementById('onloadscript');
+         var scriptText = onloadscript.childNodes[0].nodeValue;
+         eval(scriptText); " />
+
+<div id="header">
+<p id="ht">Error when processing your request</p>
+</div>
+<p id="msg"></p>
+<br/><br/>
+
+<button onclick="window.location.reload()">Reload application</button>
+<button onclick="var e=document.getElementById('hidden_div'); e.className='showme';">Show error details</button><br/>
+
+<div id="hidden_div" class="hideme">
+  <p>
+    <div id="errorcode"><%=ERRORCODE%></div>
+    <div id="errormessage"><%=MESSAGE%></div>
+    Server name: <%=SYHOST%><br/>
+    System name: <%=SYSYSID%><br/>
+    Date: <%=SYDATUM%><br/>
+    Time: <%=SYUZEIT%><br/>
+    ICF error code: <%=SYECODE%><br/>
+    System error text: <%=SYETEXT%><br/>
+    ICF url: <%=PATHTRANS%><br/>
+    ABAP callstack: <%=ABAPCALLSTACK%>
+  </p>
+</div>
+</body>
+</html>
